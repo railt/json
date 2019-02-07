@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json\Json5;
+namespace Railt\Json\Json5\Decoder;
 
 /**
  * Class Parser

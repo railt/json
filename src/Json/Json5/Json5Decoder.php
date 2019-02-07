@@ -10,11 +10,18 @@ declare(strict_types=1);
 namespace Railt\Json\Json5;
 
 use Railt\Io\File;
+use Railt\Json\Exception\JsonEncodingException;
+use Railt\Json\Exception\JsonException;
+use Railt\Json\Exception\JsonStackOverflowException;
 use Railt\Json\Exception\JsonSyntaxException;
+use Railt\Json\Json5\Decoder\Ast\Json5Node;
+use Railt\Json\Json5\Decoder\Parser;
 use Railt\Json\JsonDecoder;
 use Railt\Json\Rfc7159\NativeJsonDecoder;
 use Railt\Lexer\LexerInterface;
 use Railt\Parser\Exception\ParserException;
+use Railt\Parser\Exception\UnexpectedTokenException;
+use Railt\Parser\Exception\UnrecognizedTokenException;
 use Railt\Parser\ParserInterface;
 
 /**
@@ -70,6 +77,7 @@ class Json5Decoder extends JsonDecoder
     /**
      * @param string $json
      * @return mixed
+     * @throws JsonException
      */
     public function decode(string $json)
     {
@@ -84,12 +92,15 @@ class Json5Decoder extends JsonDecoder
      * @param string $json
      * @param \Closure $otherwise
      * @return mixed
+     * @throws JsonException
      */
     private function tryFallback(string $json, \Closure $otherwise)
     {
         try {
             return $this->native->decode($json);
-        } catch (\JsonException | \AssertionError $e) {
+        } catch (JsonStackOverflowException | JsonEncodingException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
             return $otherwise($json);
         }
     }
@@ -102,17 +113,24 @@ class Json5Decoder extends JsonDecoder
     private function tryParse(string $json5)
     {
         try {
+            /** @var Json5Node $ast */
             $ast = $this->parser->parse(File::fromSources($json5));
-            // TODO
-        } catch (ParserException $e) {
-            $message = \vsprintf('%s at line %d column %d in %s', [
-                $e->getMessage(),
-                $e->getLine(),
-                $e->getColumn(),
-                $json5,
-            ]);
 
-            throw new JsonSyntaxException($message);
+            return $ast->reduce();
+        } catch (UnrecognizedTokenException | UnexpectedTokenException $e) {
+            throw $this->throwJson5Exception($e);
         }
+    }
+
+    /**
+     * @param ParserException $e
+     * @return JsonSyntaxException
+     */
+    private function throwJson5Exception(ParserException $e): JsonSyntaxException
+    {
+        $message = '%s on line %d at column %d';
+        $message = \sprintf($message, $e->getMessage(), $e->getLine(), $e->getColumn());
+
+        return new JsonSyntaxException($message);
     }
 }
