@@ -14,54 +14,44 @@ use Railt\Parser\Ast\LeafInterface;
 /**
  * @internal Internal class for json5 abstract syntax tree node representation
  */
-class NumberNode implements NodeInterface
+abstract class NumberNode implements NodeInterface
 {
     /**
      * @var LeafInterface
      */
-    private $value;
+    protected $value;
 
     /**
-     * @var bool
+     * @var int
      */
-    private $float;
+    private $options;
 
     /**
      * BoolNode constructor.
      *
-     * @param string $name
      * @param array $children
+     * @param int $options
      */
-    public function __construct(string $name, array $children = [])
+    public function __construct(array $children = [], int $options = 0)
     {
+        $this->options = $options;
         $this->value = \reset($children);
-        $this->float = $this->value->is('T_FLOAT');
-    }
-
-    /**
-     * @return float|int|mixed
-     */
-    public function reduce()
-    {
-        $value = $this->value->getValue();
-
-        if ($this->float || $this->isFloatOrOverflow($value)) {
-            $result = (float)$value;
-
-            /** @noinspection TypeUnsafeComparisonInspection */
-            if ($result != (int)$value) {
-                return $result;
-            }
-        }
-
-        return (int)$value;
     }
 
     /**
      * @param string $value
      * @return bool
      */
-    private function isFloatOrOverflow(string $value): bool
+    protected function isStringable(string $value): bool
+    {
+        return (bool)($this->options & \JSON_BIGINT_AS_STRING);
+    }
+
+    /**
+     * @param string $value
+     * @return bool
+     */
+    protected function isFloatOrOverflow(string $value): bool
     {
         if (\strpos($value, 'e') !== false) {
             return true;

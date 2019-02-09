@@ -7,12 +7,12 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json\Exception;
+namespace Railt\Json\Rfc7159;
 
 /**
  * Class Message
  */
-class Message
+class ExceptionMessage
 {
     /**
      * @var string
@@ -67,7 +67,7 @@ class Message
     /**
      * @var string
      */
-    public const ERROR_MESSAGE_UTF16 = 'he JSON string contains a malformed UTF-16 characters, possibly incorrectly encoded';
+    public const ERROR_MESSAGE_UTF16 = 'The JSON string contains a malformed UTF-16 characters, possibly incorrectly encoded';
 
     /**
      * @param int $code

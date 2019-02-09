@@ -22,20 +22,26 @@ class ObjectNode implements NodeInterface
     private $children;
 
     /**
+     * @var int
+     */
+    private $options;
+
+    /**
      * ObjectNode constructor.
      *
-     * @param string $name
      * @param array $children
+     * @param int $options
      */
-    public function __construct(string $name, array $children = [])
+    public function __construct(array $children = [], int $options = 0)
     {
         $this->children = $children;
+        $this->options = $options;
     }
 
     /**
-     * @return array
+     * @return array|object
      */
-    public function reduce(): array
+    public function reduce()
     {
         $result = [];
 
@@ -50,6 +56,10 @@ class ObjectNode implements NodeInterface
             $result[$key->reduce()] = $value->reduce();
         }
 
-        return $result;
+        if ($this->options & \JSON_OBJECT_AS_ARRAY) {
+            return $result;
+        }
+
+        return (object)$result;
     }
 }

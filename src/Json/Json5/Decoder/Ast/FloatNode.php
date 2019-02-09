@@ -7,20 +7,18 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json;
-
-use Railt\Json\Json5\Json5Decoder;
+namespace Railt\Json\Json5\Decoder\Ast;
 
 /**
- * Class Json5
+ * @internal Internal class for json5 abstract syntax tree node representation
  */
-class Json5 extends Json
+class FloatNode extends NumberNode
 {
     /**
-     * @return JsonDecoderInterface
+     * @return float|mixed
      */
-    public static function decoder(): JsonDecoderInterface
+    public function reduce()
     {
-        return new Json5Decoder();
+        return (float)$this->value;
     }
 }
