@@ -15,16 +15,52 @@ namespace Railt\Json\Json5\Decoder\Ast;
 class IntNode extends NumberNode
 {
     /**
-     * @return int|string|null
+     * @return int|string|float
      */
     public function reduce()
     {
-        $value = $this->value->getValue(0);
+        return $this->renderValue();
+    }
 
-        if ($this->isStringable($value)) {
-            return (string)(float)$value;
+    /**
+     * @return string
+     */
+    private function valueToString(): string
+    {
+        $value = ($this->isPositive() ? '' : '-') . $this->getValue();
+
+        return $this->getExponent() !== 0 ? $value . 'e' . $this->getExponent() : $value;
+    }
+
+    /**
+     * @return float|int
+     */
+    private function renderValue()
+    {
+        $value = $this->valueToString();
+
+        if ($this->getExponent() === 0) {
+            if ($this->isOverflow($value)) {
+                return $this->renderAsString() ? $value : (float)$value;
+            }
+
+            return (int)$value;
         }
 
-        return (int)$value;
+        return $this->isOverflow($value) && $this->renderAsString() ? $value : (float)$value;
+    }
+
+    /**
+     * @param string $value
+     * @return bool
+     */
+    protected function isOverflow(string $value): bool
+    {
+        if (\function_exists('\\bccomp')) {
+            return \bccomp($value, (string)\PHP_INT_MAX) > 0 || \bccomp($value, (string)\PHP_INT_MIN) < 0;
+        }
+
+        // Try to fallback
+        return $value > \PHP_INT_MAX || $value < \PHP_INT_MIN;
     }
 }
