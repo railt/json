@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Railt\Json;
 
 use Railt\Io\Readable;
-use Railt\Json\Exception\JsonException;
 
 /**
  * Class JsonDecoder
@@ -29,7 +28,6 @@ abstract class JsonDecoder extends JsonRuntime implements JsonDecoderInterface
     /**
      * @param Readable $readable
      * @return array|object|mixed
-     * @throws JsonException
      */
     public function read(Readable $readable)
     {
