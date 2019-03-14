@@ -103,11 +103,12 @@ class Json5Decoder extends JsonDecoder
      * @return mixed|null
      * @throws JsonSyntaxException
      * @throws \Railt\Io\Exception\ExternalFileException
+     * @throws \LogicException
      */
     private function tryParse(string $json5)
     {
         try {
-            $parser = new Parser($this->getOptions(), $this->getRecursionDepth());
+            $parser = new Parser($this->getOptions());
 
             /** @var Json5Node $ast */
             $ast = $parser->parse(File::fromSources($json5));

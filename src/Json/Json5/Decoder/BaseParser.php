@@ -11,8 +11,6 @@ namespace Railt\Json\Json5\Decoder;
 
 use Railt\Lexer\Driver\NativeRegex;
 use Railt\Lexer\LexerInterface;
-use Railt\Parser\Grammar;
-use Railt\Parser\GrammarInterface;
 use Railt\Parser\Parser;
 use Railt\Parser\Rule\Alternation;
 use Railt\Parser\Rule\Concatenation;
@@ -140,26 +138,6 @@ class BaseParser extends Parser
     ];
 
     /**
-     * List of rule delegates.
-     *
-     * @var string[]
-     */
-    protected const PARSER_DELEGATES = [
-        'Json'       => \Railt\Json\Json5\Decoder\Ast\Json5Node::class,
-        'Object'     => \Railt\Json\Json5\Decoder\Ast\ObjectNode::class,
-        'Array'      => \Railt\Json\Json5\Decoder\Ast\ArrayNode::class,
-        'String'     => \Railt\Json\Json5\Decoder\Ast\StringNode::class,
-        'Boolean'    => \Railt\Json\Json5\Decoder\Ast\BoolNode::class,
-        'Null'       => \Railt\Json\Json5\Decoder\Ast\NullNode::class,
-        'Identifier' => \Railt\Json\Json5\Decoder\Ast\IdentifierNode::class,
-        'Inf'        => \Railt\Json\Json5\Decoder\Ast\InfNode::class,
-        'NaN'        => \Railt\Json\Json5\Decoder\Ast\NaNNode::class,
-        'Float'      => \Railt\Json\Json5\Decoder\Ast\FloatNode::class,
-        'Int'        => \Railt\Json\Json5\Decoder\Ast\IntNode::class,
-        'Hex'        => \Railt\Json\Json5\Decoder\Ast\HexNode::class,
-    ];
-
-    /**
      * Parser root rule name.
      *
      * @var string
@@ -171,7 +149,7 @@ class BaseParser extends Parser
      */
     public function __construct()
     {
-        parent::__construct($this->createLexer(), $this->createGrammar());
+        parent::__construct($this->createLexer(), $this->createGrammarRules(), static::PARSER_ROOT_RULE);
     }
 
     /**
@@ -180,14 +158,6 @@ class BaseParser extends Parser
     protected function createLexer(): LexerInterface
     {
         return new NativeRegex(static::LEXER_TOKENS, static::LEXER_SKIPPED_TOKENS);
-    }
-
-    /**
-     * @return GrammarInterface
-     */
-    protected function createGrammar(): GrammarInterface
-    {
-        return new Grammar($this->createGrammarRules(), static::PARSER_ROOT_RULE, static::PARSER_DELEGATES);
     }
 
     /**
