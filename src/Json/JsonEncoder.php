@@ -7,11 +7,12 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json;
+namespace Railt\Component\Json;
 
-use Railt\Io\Exception\NotAccessibleException;
-use Railt\Io\File\Physical;
-use Railt\Io\Readable;
+use Railt\Component\Io\Exception\NotAccessibleException;
+use Railt\Component\Io\File\Physical;
+use Railt\Component\Io\File\Virtual;
+use Railt\Component\Io\Readable;
 
 /**
  * Class JsonEncoder
@@ -52,6 +53,6 @@ abstract class JsonEncoder extends JsonRuntime implements JsonEncoderInterface
             throw new NotAccessibleException(\sprintf($error, $pathname));
         }
 
-        return new Physical($json, $pathname);
+        return new Virtual($json, $pathname);
     }
 }

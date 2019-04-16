@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json;
+namespace Railt\Component\Json;
 
 /**
  * Interface JsonRuntimeInterface

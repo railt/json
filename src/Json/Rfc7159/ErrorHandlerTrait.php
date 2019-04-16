@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json\Rfc7159;
+namespace Railt\Component\Json\Rfc7159;
 
-use Railt\Json\Exception\JsonException;
+use Railt\Component\Json\Exception\JsonException;
 
 /**
  * Trait ErrorHandlerTrait

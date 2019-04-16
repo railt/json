@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json\Exception;
+namespace Railt\Component\Json\Exception;
 
 /**
  * Class JsonStackOverflowException

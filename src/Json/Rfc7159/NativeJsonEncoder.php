@@ -7,10 +7,10 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json\Rfc7159;
+namespace Railt\Component\Json\Rfc7159;
 
-use Railt\Json\Exception\JsonException;
-use Railt\Json\JsonEncoder;
+use Railt\Component\Json\Exception\JsonException;
+use Railt\Component\Json\JsonEncoder;
 
 /**
  * Class NativeJsonEncoder
@@ -29,7 +29,7 @@ class NativeJsonEncoder extends JsonEncoder
 
     /**
      * Wrapper for JSON encoding logic with predefined options that
-     * throws a Railt\Json\Exception\JsonException when an error occurs.
+     * throws a Railt\Component\Json\Exception\JsonException when an error occurs.
      *
      * @see http://www.php.net/manual/en/function.json-encode.php
      * @see http://php.net/manual/en/class.jsonexception.php

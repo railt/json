@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json\Json5\Decoder;
+namespace Railt\Component\Json\Json5\Decoder;
 
-use Railt\Parser\Ast\Rule;
+use Railt\Component\Parser\Ast\BuilderInterface;
 
 /**
  * Class Parser
@@ -17,56 +17,35 @@ use Railt\Parser\Ast\Rule;
 class Parser extends BaseParser
 {
     /**
-     * List of rule delegates.
-     *
-     * @var string[]
-     */
-    protected const PARSER_DELEGATES = [
-        'Json'       => \Railt\Json\Json5\Decoder\Ast\Json5Node::class,
-        'Object'     => \Railt\Json\Json5\Decoder\Ast\ObjectNode::class,
-        'Array'      => \Railt\Json\Json5\Decoder\Ast\ArrayNode::class,
-        'String'     => \Railt\Json\Json5\Decoder\Ast\StringNode::class,
-        'Boolean'    => \Railt\Json\Json5\Decoder\Ast\BoolNode::class,
-        'Null'       => \Railt\Json\Json5\Decoder\Ast\NullNode::class,
-        'Identifier' => \Railt\Json\Json5\Decoder\Ast\IdentifierNode::class,
-        'Inf'        => \Railt\Json\Json5\Decoder\Ast\InfNode::class,
-        'NaN'        => \Railt\Json\Json5\Decoder\Ast\NaNNode::class,
-        'Float'      => \Railt\Json\Json5\Decoder\Ast\FloatNode::class,
-        'Int'        => \Railt\Json\Json5\Decoder\Ast\IntNode::class,
-        'Hex'        => \Railt\Json\Json5\Decoder\Ast\HexNode::class,
-    ];
-
-    /**
      * @var int
      */
     private $options;
 
     /**
+     * @var int
+     */
+    private $depth;
+
+    /**
      * Parser constructor.
      *
      * @param int $options
+     * @param int $depth
      */
-    public function __construct(int $options)
+    public function __construct(int $options, int $depth)
     {
+        $this->depth = $depth;
         $this->options = $options;
 
         parent::__construct();
     }
 
     /**
-     * @param string $rule
-     * @param array $children
-     * @param int $offset
-     * @return mixed|Rule|\Railt\Parser\Ast\RuleInterface
+     * @param array $trace
+     * @return BuilderInterface
      */
-    protected function create(string $rule, array $children, int $offset)
+    protected function getBuilder(array $trace): BuilderInterface
     {
-        if (isset(self::PARSER_DELEGATES[$rule])) {
-            $delegate = self::PARSER_DELEGATES[$rule];
-
-            return new $delegate($children, $this->options);
-        }
-
-        return new Rule($rule, $children, $offset);
+        return new Builder($trace, $this->grammar, $this->options);
     }
 }

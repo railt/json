@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json;
+namespace Railt\Component\Json;
 
-use Railt\Json\Json5\Json5Decoder;
+use Railt\Component\Json\Json5\Json5Decoder;
 
 /**
  * Class Json5

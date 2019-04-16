@@ -7,12 +7,12 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json\Json5\Decoder;
+namespace Railt\Component\Json\Json5\Decoder;
 
-use Railt\Io\Readable;
-use Railt\Lexer\Factory;
-use Railt\Lexer\LexerInterface;
-use Railt\Lexer\TokenInterface;
+use Railt\Component\Io\Readable;
+use Railt\Component\Lexer\Factory;
+use Railt\Component\Lexer\LexerInterface;
+use Railt\Component\Lexer\TokenInterface;
 
 /**
  * Class StringLexer
@@ -53,7 +53,7 @@ class StringLexer implements LexerInterface
      * StringLexer constructor.
      *
      * @throws \InvalidArgumentException
-     * @throws \Railt\Lexer\Exception\BadLexemeException
+     * @throws \Railt\Component\Lexer\Exception\BadLexemeException
      */
     public function __construct()
     {
@@ -63,7 +63,7 @@ class StringLexer implements LexerInterface
     /**
      * @return StringLexer|LexerInterface
      * @throws \InvalidArgumentException
-     * @throws \Railt\Lexer\Exception\BadLexemeException
+     * @throws \Railt\Component\Lexer\Exception\BadLexemeException
      */
     public static function getInstance(): LexerInterface
     {

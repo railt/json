@@ -7,10 +7,10 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json;
+namespace Railt\Component\Json;
 
-use Railt\Json\Rfc7159\NativeJsonDecoder;
-use Railt\Json\Rfc7159\NativeJsonEncoder;
+use Railt\Component\Json\Rfc7159\NativeJsonDecoder;
+use Railt\Component\Json\Rfc7159\NativeJsonEncoder;
 
 /**
  * Class Json

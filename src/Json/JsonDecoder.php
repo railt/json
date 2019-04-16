@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Json;
+namespace Railt\Component\Json;
 
-use Railt\Io\Readable;
+use Railt\Component\Io\Readable;
 
 /**
  * Class JsonDecoder
