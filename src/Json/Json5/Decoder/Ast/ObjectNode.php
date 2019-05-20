@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json\Json5\Decoder\Ast;
+namespace Railt\Json\Json5\Decoder\Ast;
 
-use Railt\Component\Parser\Ast\RuleInterface;
+use Phplrt\Ast\RuleInterface;
 
 /**
  * @internal Internal class for json5 abstract syntax tree node representation

@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json\Json5\Decoder\Ast;
+namespace Railt\Json\Json5\Decoder\Ast;
 
-use Railt\Component\Parser\Ast\LeafInterface;
+use Phplrt\Ast\LeafInterface;
 
 /**
  * @internal Internal class for json5 abstract syntax tree node representation
@@ -36,6 +36,6 @@ class BoolNode implements NodeInterface
      */
     public function reduce(): bool
     {
-        return $this->value->is('T_BOOL_TRUE');
+        return $this->value->getName() === 'T_BOOL_TRUE';
     }
 }

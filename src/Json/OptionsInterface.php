@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json;
+namespace Railt\Json;
 
 /**
  * Interface OptionsInterface

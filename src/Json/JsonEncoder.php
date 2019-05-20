@@ -7,11 +7,11 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json;
+namespace Railt\Json;
 
-use Railt\Component\Io\Exception\NotAccessibleException;
-use Railt\Component\Io\File\Virtual;
-use Railt\Component\Io\Readable;
+use Phplrt\Io\Exception\NotAccessibleException;
+use Phplrt\Io\File\Virtual;
+use Phplrt\Io\Readable;
 
 /**
  * Class JsonEncoder

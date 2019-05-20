@@ -7,10 +7,10 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json\Json5\Decoder\Ast;
+namespace Railt\Json\Json5\Decoder\Ast;
 
-use Railt\Component\Parser\Ast\LeafInterface;
-use Railt\Component\Parser\Ast\RuleInterface;
+use Phplrt\Ast\LeafInterface;
+use Phplrt\Ast\RuleInterface;
 
 /**
  * @internal Internal class for json5 abstract syntax tree node representation
@@ -56,11 +56,11 @@ abstract class NumberNode implements NodeInterface
     {
         foreach ($children as $child) {
             switch (true) {
-                case $child->is('Sign'):
+                case $child->getName() === 'Sign':
                     $this->positive = $this->isPositiveSign($child);
                     break;
 
-                case $child->is('ExponentPart'):
+                case $child->getName() === 'ExponentPart':
                     $this->exponent = $this->parseExponent($child);
                     break;
 
@@ -76,7 +76,7 @@ abstract class NumberNode implements NodeInterface
      */
     private function isPositiveSign(RuleInterface $rule): bool
     {
-        return $rule->getChild(0)->is('T_PLUS');
+        return $rule->getChild(0)->getName() === 'T_PLUS';
     }
 
     /**

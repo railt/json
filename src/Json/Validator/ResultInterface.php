@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json\Validator;
+namespace Railt\Json\Validator;
 
-use Railt\Component\Json\Exception\JsonValidationExceptionInterface;
+use Railt\Json\Exception\JsonValidationExceptionInterface;
 
 /**
  * Interface ResultInterface

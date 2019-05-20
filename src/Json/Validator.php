@@ -7,15 +7,15 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json;
+namespace Railt\Json;
 
 use JsonSchema\Exception\ValidationException;
 use JsonSchema\Validator as JsonValidator;
-use Railt\Component\Io\Readable;
-use Railt\Component\Json\Exception\JsonException;
-use Railt\Component\Json\Exception\JsonValidationExceptionInterface;
-use Railt\Component\Json\Validator\Result;
-use Railt\Component\Json\Validator\ResultInterface;
+use Phplrt\Io\Readable;
+use Railt\Json\Exception\JsonException;
+use Railt\Json\Exception\JsonValidationExceptionInterface;
+use Railt\Json\Validator\Result;
+use Railt\Json\Validator\ResultInterface;
 
 /**
  * Class Validator

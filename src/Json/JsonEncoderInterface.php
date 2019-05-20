@@ -7,10 +7,10 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json;
+namespace Railt\Json;
 
-use Railt\Component\Io\Readable;
-use Railt\Component\Json\Exception\JsonException;
+use Phplrt\Io\Readable;
+use Railt\Json\Exception\JsonException;
 
 /**
  * Interface JsonEncoderInterface

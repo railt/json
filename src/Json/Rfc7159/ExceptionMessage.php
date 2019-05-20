@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json\Rfc7159;
+namespace Railt\Json\Rfc7159;
 
 /**
  * Class Message

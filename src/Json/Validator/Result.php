@@ -7,11 +7,11 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json\Validator;
+namespace Railt\Json\Validator;
 
 use JsonSchema\Validator;
-use Railt\Component\Json\Exception\JsonValidationException;
-use Railt\Component\Json\Exception\JsonValidationExceptionInterface;
+use Railt\Json\Exception\JsonValidationException;
+use Railt\Json\Exception\JsonValidationExceptionInterface;
 
 /**
  * Class Result

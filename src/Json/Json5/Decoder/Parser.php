@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json\Json5\Decoder;
+namespace Railt\Json\Json5\Decoder;
 
-use Railt\Component\Parser\Ast\BuilderInterface;
+use Phplrt\Parser\BuilderInterface;
 
 /**
  * Class Parser

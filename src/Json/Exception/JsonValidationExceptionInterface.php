@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json\Exception;
+namespace Railt\Json\Exception;
 
 /**
  * Interface JsonValidationExceptionInterface

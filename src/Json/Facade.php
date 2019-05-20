@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json;
+namespace Railt\Json;
 
-use Railt\Component\Io\Readable;
+use Phplrt\Io\Readable;
 
 /**
  * @method static string encode(mixed $data, int $options = null)

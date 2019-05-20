@@ -7,23 +7,23 @@
  */
 declare(strict_types=1);
 
-namespace Railt\Component\Json\Json5;
+namespace Railt\Json\Json5;
 
-use Railt\Component\Io\File;
-use Railt\Component\Json\Exception\JsonEncodingException;
-use Railt\Component\Json\Exception\JsonException;
-use Railt\Component\Json\Exception\JsonStackOverflowException;
-use Railt\Component\Json\Exception\JsonSyntaxException;
-use Railt\Component\Json\Json5;
-use Railt\Component\Json\Json5\Decoder\Ast\Json5Node;
-use Railt\Component\Json\Json5\Decoder\Parser;
-use Railt\Component\Json\JsonDecoder;
-use Railt\Component\Json\Rfc7159\NativeJsonDecoder;
-use Railt\Component\Lexer\LexerInterface;
-use Railt\Component\Parser\Exception\ParserException;
-use Railt\Component\Parser\Exception\UnexpectedTokenException;
-use Railt\Component\Parser\Exception\UnrecognizedTokenException;
-use Railt\Component\Parser\ParserInterface;
+use Phplrt\Io\File;
+use Phplrt\Lexer\LexerInterface;
+use Phplrt\Parser\Exception\ParserException;
+use Phplrt\Parser\Exception\UnexpectedTokenException;
+use Phplrt\Parser\Exception\UnrecognizedTokenException;
+use Phplrt\Parser\ParserInterface;
+use Railt\Json\Exception\JsonEncodingException;
+use Railt\Json\Exception\JsonException;
+use Railt\Json\Exception\JsonStackOverflowException;
+use Railt\Json\Exception\JsonSyntaxException;
+use Railt\Json\Json5;
+use Railt\Json\Json5\Decoder\Ast\Json5Node;
+use Railt\Json\Json5\Decoder\Parser;
+use Railt\Json\JsonDecoder;
+use Railt\Json\Rfc7159\NativeJsonDecoder;
 
 /**
  * Class Json5Decoder
@@ -102,7 +102,7 @@ class Json5Decoder extends JsonDecoder
      * @param string $json5
      * @return mixed|null
      * @throws JsonSyntaxException
-     * @throws \Railt\Component\Exception\ExternalException
+     * @throws \Railt\Exception\ExternalException
      */
     private function tryParse(string $json5)
     {
